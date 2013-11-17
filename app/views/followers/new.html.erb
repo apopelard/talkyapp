@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>New Follower</h1>
+</div>
+
+<%= form_tag(followers_url, method: 'post', class: 'form-horizontal') do %>
+  <div class="form-group">
+    <%= label_tag :user_id, nil, class: 'col-md-2 control-label' %>
+    <div class="col-md-6">
+      <%= select_tag :user_id, options_from_collection_for_select(@users, "id", "full_name"), class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :following_id, nil, class: 'col-md-2 control-label' %>
+    <div class="col-md-6">
+      <%= select_tag :following_id, options_from_collection_for_select(@users, "id", "full_name"), class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :favorite, nil, class: 'col-md-2 control-label' %>
+    <div class="col-md-6">
+      <%= check_box_tag :favorite %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-6">
+      <%= submit_tag "Create Follower", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Followers</h1>
+</div>
+
+<p><%= link_to 'Add a New Follower', new_follower_url, class: 'btn btn-primary' %></p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Following</th>
+      <th>Favorite</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @followers.each do |follower| %>
+      <tr>
+        <td><%= follower.following.full_name %></td>
+        <td><%= follower.followed.full_name %></td>
+        <td><%= follower.favorite? %></td>
+        <td><%= link_to '<i class="fa fa-search-plus"></i>'.html_safe, follower_url(follower), class: 'btn btn-primary' %></td>
+        <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_follower_url(follower), class: 'btn btn-warning' %></td>
+        <td><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, follower_url(follower), method: 'delete', data: { confirm: "Do you really want to delete this follower?" }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

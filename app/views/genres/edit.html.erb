@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h1>Editing Genre #<%= @genre.id %></h1>
+</div>
+
+<%= form_tag(genre_url(@genre), method: 'patch', class: 'form-horizontal') do %>
+  <div class="form-group">
+    <%= label_tag :story_id, nil, class: 'col-md-2 control-label' %>
+    <div class="col-md-6">
+      <%= number_field_tag :story_id, @genre.story_id, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :category_id, nil, class: 'col-md-2 control-label' %>
+    <div class="col-md-6">
+      <%= number_field_tag :category_id, @genre.category_id, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-6">
+      <%= submit_tag "Update Genre", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
