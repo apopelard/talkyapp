@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'json'
+
 class StoriesController < ApplicationController
 
   def index
@@ -6,9 +9,12 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find_by(id: params[:id])
+    @latitude = @story.latitude
+    @longitude = @story.longitute
   end
 
   def new
+    @users = User.all
   end
 
   def create
@@ -21,8 +27,16 @@ class StoriesController < ApplicationController
     @story.city = params[:city]
     @story.state = params[:state]
     @story.country = params[:country]
-    @story.latitude = params[:latitude]
-    @story.longitute = params[:longitute]
+
+    address = "#{params[:address1]} #{params[:address2]} #{params[:city]} #{params[:state]} #{params[:postcode]} #{params[:country]}"
+    url_safe_address = URI.encode(address)
+
+    url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{url_safe_address}&sensor=false"
+    raw_data = open(url).read
+    parsed_data = JSON.parse(raw_data)
+    @story.latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
+    @story.longitute = parsed_data["results"][0]["geometry"]["location"]["lng"]
+
     @story.picture_url = params[:picture_url]
     @story.audio_url = params[:audio_url]
     @story.rating = params[:rating]

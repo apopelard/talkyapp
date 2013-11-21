@@ -9,6 +9,8 @@ class GenresController < ApplicationController
   end
 
   def new
+    @stories = Story.all
+    @categories = Category.all
   end
 
   def create

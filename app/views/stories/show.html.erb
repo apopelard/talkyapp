@@ -1,48 +1,66 @@
-<div class="page-header">
-  <h1>Story #<%= @story.id %></h1>
-</div>
+<p>&nbsp;</p>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1><%= @story.name %></h1>
+      </div>
+    <div class="panel-body">
+       <div class="container">
+     <div class="row">
+      <div class="col-md-6">
+        <%= image_tag @story.picture_url, width: 300, class: "img-thumbnail" %>
+        <dl class="dl-horizontal align-left">
+          <dt>Listen</dt>
+          <dd>
+            <%= link_to @story.audio_url do %>
+            <span class="glyphicon glyphicon-play"></span>
+            <% end %>
+          </dd>
+          <dt>Description</dt>
+          <dd><%= @story.description %></dd>
+          <dt>Author</dt>
+          <dd>
+            <%= image_tag @story.user.picture_url, width: 40, class: "img-circle" %>
+            <%= link_to @story.user.full_name, user_url(@story.user.id) %>
+            <span class="badge"><%= @story.user.stories.count %> stories</span>
+          </dd>
+          <dt>Address</dt>
+          <dd>
+            <address>
+              <%= @story.address1 %><br>
+              <% unless @story.address2.empty? %>
+              <%= @story.address2 %>
+              <% end %><br>
+              <%= @story.city %>,
+              <%= @story.state %> <%= @story.postcode %><br>
+              <%= @story.country %><br>
+            </address>
+          </dd>
+          <dt>Categories</dt>
+          <dd>
+            <% @story.categories.each do |category| %>
+              <button type="button" class="btn btn-sm btn-primary"><%= category.name %></button>
+            <% end %>
+          </dd>
+          <dt>Rating</dt>
+          <dd>
+            <% (1..@story.rating).each do |i| %>
+              <span class="glyphicon glyphicon-star"></span>
+              <% @empty_stars = 5 - i.to_i %>
+            <% end %>
+            <% (1..@empty_stars).each do |i| %>
+              <span class="glyphicon glyphicon-star-empty"></span>
+            <% end %>
+          </dd>
+        </dl>
+      </div>
+      <div class="col-md-6">
+        <h4>Check the story location</h4>
+        <div style="width:450px;height:450px" id="map-canvas"></div>
+      </div>
+    </div>
+    <div class="row">
 
-<dl class="dl-horizontal">
-  <dt>Name</dt>
-  <dd><%= @story.name %></dd>
-
-  <dt>Description</dt>
-  <dd><%= @story.description %></dd>
-
-  <dt>Address1</dt>
-  <dd><%= @story.address1 %></dd>
-
-  <dt>Address2</dt>
-  <dd><%= @story.address2 %></dd>
-
-  <dt>Postcode</dt>
-  <dd><%= @story.postcode %></dd>
-
-  <dt>City</dt>
-  <dd><%= @story.city %></dd>
-
-  <dt>State</dt>
-  <dd><%= @story.state %></dd>
-
-  <dt>Country</dt>
-  <dd><%= @story.country %></dd>
-
-  <dt>Latitude</dt>
-  <dd><%= @story.latitude %></dd>
-
-  <dt>Longitute</dt>
-  <dd><%= @story.longitute %></dd>
-
-  <dt>Picture url</dt>
-  <dd><%= @story.picture_url %></dd>
-
-  <dt>Audio url</dt>
-  <dd><%= @story.audio_url %></dd>
-
-  <dt>Rating</dt>
-  <dd><%= @story.rating %></dd>
-
-  <dt>User</dt>
-  <dd><%= @story.user_id %></dd>
-
-</dl>
+    </div>
+  </div>
+    </div>
+  </div>

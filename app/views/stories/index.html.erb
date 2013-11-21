@@ -21,7 +21,7 @@
       <th>Audio url</th>
       <th>Rating</th>
       <th>User</th>
-      <th></th>
+      <th>Categories</th>
       <th></th>
       <th></th>
     </tr>
@@ -40,10 +40,15 @@
         <td><%= story.country %></td>
         <td><%= story.latitude %></td>
         <td><%= story.longitute %></td>
-        <td><%= story.picture_url %></td>
+        <td><%= image_tag story.picture_url, width: "100" %></td>
         <td><%= story.audio_url %></td>
         <td><%= story.rating %></td>
-        <td><%= story.user_id %></td>
+        <td><%= story.user.full_name %></td>
+        <td>
+          <% story.categories.each do |category| %>
+          <p><%= category.name %></p>
+          <% end %>
+        </td>
         <td><%= link_to '<i class="fa fa-search-plus"></i>'.html_safe, story_url(story), class: 'btn btn-primary' %></td>
         <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_story_url(story), class: 'btn btn-warning' %></td>
         <td><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, story_url(story), method: 'delete', data: { confirm: "Do you really want to delete this story?" }, class: 'btn btn-danger' %></td>

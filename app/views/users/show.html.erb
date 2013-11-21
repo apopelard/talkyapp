@@ -1,27 +1,116 @@
-<div class="page-header">
-  <h1>User #<%= @user.id %></h1>
+<p>&nbsp;</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h1><%= @user.first_name %>&acute;s page</h1>
+  </div>
+  <div class="panel-body">
+    <div >
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-4">
+                <%= image_tag @user.picture_url, width: "150", heigth: "150", alt: @user.full_name, class: "img-thumbnail" %>
+              </div>
+              <div class="col-md-8">
+                <div class="col-md-4">
+                  <p class="text-muted">Name: </p>
+                  <p class="text-muted">Lives in:</p>
+                  <p class="text-muted">Rating:</p>
+                </div>
+                <div class="col-md-8">
+                  <p><%= @user.full_name %></p>
+                  <p><%= @user.location %></p>
+                  <p>
+                  <% if @user_rating!=0 %>
+                    <% (1..@user_rating).each do |i| %>
+                      <span class="glyphicon glyphicon-star"></span>
+                      <% @empty_stars = 5 - i.to_i %>
+                    <% end %>
+                    <% (1..@empty_stars).each do |i| %>
+                      <span class="glyphicon glyphicon-star-empty"></span>
+                    <% end %>
+                  <% end %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>&nbsp;</p>
+          <p></p>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="btn-group btn-group-justified">
+                <a href="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                  <b><%= @user.stories.count %></b><br><small>STORIES</small>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                <% @user.stories.each do |story| %>
+                  <li>
+                    <%= link_to story.name, story_url(story.id) %>
+                  </li>
+                <% end %>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="btn-group btn-group-justified">
+                <a href="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                  <b><%= @user.followers.count %></b><br><small>FOLLOWERS</small>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                <% @user.followers.each do |follower| %>
+                  <li>
+                    <%= link_to user_url(follower.id) do %>
+                    <%= image_tag follower.picture_url, class: "img-circle", width: "40", alt: "#{follower.full_name}"%>
+                    <%= follower.first_name %>
+                    <% end %>
+                  </li>
+                <% end %>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="btn-group btn-group-justified">
+                <a href="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                  <b><%= @user.followings.count %></b><br><small>FOLLOWING</small>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                <% @user.followings.each do |following| %>
+                  <li>
+                   <%= link_to user_url(following.id) do %>
+                    <%= image_tag following.picture_url, class: "img-circle", width: "40", alt: "#{following.full_name}"%>
+                    <%= following.first_name %>
+                    <% end %>
+                  </li>
+                <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <h3>Storyfeed</h3>
+          </p>
+          <div class="list-group">
+            <% @user.stories.each do |story| %>
+              <a href="<%= story_url(story.id) %>" class='list-group-item'>
+                <p>
+                  <h5><b><%= story.name %></b></h5>
+                </p>
+                <p>
+                  <%= story.description %>
+                </p>
+                <p>
+                  <%= image_tag story.picture_url, height: "150", width: "150", class: "img-thumbnail" %>
+                </p>
+              </a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<dl class="dl-horizontal">
-  <dt>Username</dt>
-  <dd><%= @user.username %></dd>
-
-  <dt>First name</dt>
-  <dd><%= @user.first_name %></dd>
-
-  <dt>Last name</dt>
-  <dd><%= @user.last_name %></dd>
-
-  <dt>Location</dt>
-  <dd><%= @user.location %></dd>
-
-  <dt>Picture</dt>
-  <dd><%= image_tag @user.picture_url, class: 'img-circle', width: '100', alt: '#{@user.username}'%></dd>
-
-  <dt>Email</dt>
-  <dd><%= @user.email %></dd>
-
-  <dt>Last visit</dt>
-  <dd><%= @user.last_visit %></dd>
-
-</dl>

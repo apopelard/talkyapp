@@ -28,7 +28,7 @@ users.each do |user|
 end
 
 puts "There are now #{User.count} students in the database."
-=end
+
 # adding followers
 Follower.destroy_all
 
@@ -55,4 +55,17 @@ users.each do |user|
   end
 end
 
-puts "There are now #{Follower.count} students in the database."
+puts "There are now #{Follower.count} followers in the database."
+
+# adding followers
+Category.destroy_all
+categories = ["History", "Architecture", "Celebrities", "Mystery", "Literature", "Scenic Location"]
+
+categories.each do |category|
+  c = Category.new
+  c.name = category
+  c.save
+end
+
+puts "There are now #{Category.count} categories in the database."
+=end
