@@ -38,7 +38,7 @@
           <dt>Categories</dt>
           <dd>
             <% @story.categories.each do |category| %>
-              <button type="button" class="btn btn-sm btn-primary"><%= category.name %></button>
+              <%= link_to category.name, stories_url(cat: category.name.downcase), type: "button", class: "btn btn-sm btn-primary" %>
             <% end %>
           </dd>
           <dt>Rating</dt>

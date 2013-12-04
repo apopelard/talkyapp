@@ -60,20 +60,6 @@
   </div>
 
   <div class="form-group">
-    <%= label_tag :latitude, nil, class: 'col-md-2 control-label' %>
-    <div class="col-md-6">
-      <%= text_field_tag :latitude, nil, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= label_tag :longitute, nil, class: 'col-md-2 control-label' %>
-    <div class="col-md-6">
-      <%= text_field_tag :longitute, nil, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
     <%= label_tag :picture_url, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
       <%= text_field_tag :picture_url, nil, class: 'form-control' %>
@@ -88,16 +74,8 @@
   </div>
 
   <div class="form-group">
-    <%= label_tag :rating, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
-      <%= text_field_tag :rating, nil, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= label_tag :user_id, nil, class: 'col-md-2 control-label' %>
-    <div class="col-md-6">
-      <%= select_tag :user_id, options_from_collection_for_select(@users, "id", "full_name"), class: 'form-control' %>
+      <%= hidden_field_tag :user_id, current_user.id, class: 'form-control' %>
     </div>
   </div>
 

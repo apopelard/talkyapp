@@ -17,17 +17,11 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>Picture</th>
       <th>Name</th>
       <th>Description</th>
-      <th>Address1</th>
-      <th>Address2</th>
-      <th>Postcode</th>
       <th>City</th>
-      <th>State</th>
       <th>Country</th>
-      <th>Latitude</th>
-      <th>Longitute</th>
-      <th>Picture url</th>
       <th>Audio url</th>
       <th>Rating</th>
       <th>User</th>
@@ -40,17 +34,11 @@
   <tbody>
     <% @stories.each do |story| %>
       <tr>
+        <td><%= image_tag story.picture_url, width: "100" %></td>
         <td><%= story.name %></td>
         <td><%= story.description %></td>
-        <td><%= story.address1 %></td>
-        <td><%= story.address2 %></td>
-        <td><%= story.postcode %></td>
         <td><%= story.city %></td>
-        <td><%= story.state %></td>
         <td><%= story.country %></td>
-        <td><%= story.latitude %></td>
-        <td><%= story.longitute %></td>
-        <td><%= image_tag story.picture_url, width: "100" %></td>
         <td><%= story.audio_url %></td>
         <td><%= story.rating %></td>
         <td><%= story.user.full_name %></td>

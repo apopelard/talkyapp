@@ -79,16 +79,31 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <p>
-            <h3>Storyfeed</h3>
+                    <p>
+            <h3>My Follow Storyfeed</h3>
           </p>
           <div class="list-group">
-            <% @user.stories.each do |story| %>
+            <% @user.followings.each do |user| %>
+            <% user.stories.each do |story| %>
               <a href="<%= story_url(story.id) %>" class='list-group-item'>
                 <p>
-                  <h5><b><%= story.name %></b></h5>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <b><%= story.name %></b>
+                    </div>
+                    <div class="col-md-2">
+                      <%= story.country %>
+                    </div>
+                    <div class="col-md-4">
+                      <% (1..story.rating).each do |i| %>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <% @empty_stars = 5 - i.to_i %>
+                      <% end %>
+                      <% (1..@empty_stars).each do |i| %>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                      <% end %>
+                    </div>
+                  </div>
                 </p>
                 <p>
                   <%= story.description %>
@@ -97,6 +112,51 @@
                   <%= image_tag story.picture_url, height: "150", width: "150", class: "img-thumbnail" %>
                 </p>
               </a>
+                <% story.categories.each do |category| %>
+                <%= link_to category.name, stories_url(cat: category.name.downcase), type: "button", class: "btn btn-sm btn-primary" %>
+              <% end %>
+              <p>&nbsp;</p>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <h3>My Storyfeed</h3>
+          </p>
+          <div class="list-group">
+            <% @user.stories.each do |story| %>
+              <a href="<%= story_url(story.id) %>" class='list-group-item'>
+                <p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <b><%= story.name %></b>
+                    </div>
+                    <div class="col-md-2">
+                      <%= story.country %>
+                    </div>
+                    <div class="col-md-4">
+                      <% (1..story.rating).each do |i| %>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <% @empty_stars = 5 - i.to_i %>
+                      <% end %>
+                      <% (1..@empty_stars).each do |i| %>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                      <% end %>
+                    </div>
+                  </div>
+                </p>
+                <p>
+                  <%= story.description %>
+                </p>
+                <p>
+                  <%= image_tag story.picture_url, height: "150", width: "150", class: "img-thumbnail" %>
+                </p>
+              </a>
+                <% story.categories.each do |category| %>
+                <%= link_to category.name, stories_url(cat: category.name.downcase), type: "button", class: "btn btn-sm btn-primary" %>
+              <% end %>
+              <p>&nbsp;</p>
             <% end %>
           </div>
         </div>
