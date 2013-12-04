@@ -4,6 +4,16 @@
 
 <p><%= link_to 'Add a New Story', new_story_url, class: 'btn btn-primary' %></p>
 
+<ul class="nav nav-tabs">
+  <li <% if params["cat"]=="all" %>
+    <%= "class='active'".html_safe %>
+    <% end %>><%= link_to "All", stories_url(cat: "all") %></li>
+  <% Category.all.each do |category| %>
+  <li <% if params["cat"]==category.name.downcase %>
+    <%= "class='active'".html_safe %>
+    <% end %>><%= link_to category.name, stories_url(cat: category.name.downcase) %></li>
+  <% end %>
+</ul>
 <table class="table table-hover">
   <thead>
     <tr>

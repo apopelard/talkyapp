@@ -4,7 +4,16 @@ require 'json'
 class StoriesController < ApplicationController
 
   def index
-    @stories = Story.all
+    if params["cat"]!="all"
+      cat_id = Category.where(name: params["cat"].capitalize)
+      stories_list = Genre.where(category_id: cat_id[0].id)
+      @stories = []
+      stories_list.each do |story_id|
+        @stories << Story.find(story_id.story_id)
+      end
+    else
+      @stories = Story.all
+    end
   end
 
   def show

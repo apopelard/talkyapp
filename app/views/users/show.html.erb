@@ -21,17 +21,7 @@
                 <div class="col-md-8">
                   <p><%= @user.full_name %></p>
                   <p><%= @user.location %></p>
-                  <p>
-                  <% if @user_rating!=0 %>
-                    <% (1..@user_rating).each do |i| %>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <% @empty_stars = 5 - i.to_i %>
-                    <% end %>
-                    <% (1..@empty_stars).each do |i| %>
-                      <span class="glyphicon glyphicon-star-empty"></span>
-                    <% end %>
-                  <% end %>
-                  </p>
+                  <p><%= rating %></p>
                 </div>
               </div>
             </div>

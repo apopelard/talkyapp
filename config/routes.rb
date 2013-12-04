@@ -1,4 +1,5 @@
 Talkyapp::Application.routes.draw do
+  devise_for :users
   # Root
   root to: 'users#index'
 

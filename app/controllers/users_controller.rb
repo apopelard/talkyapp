@@ -6,16 +6,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @user_rating = 0.0
-    unless @user.stories.empty?
-      @user.stories.each do |story|
-        @user_rating = @user_rating + story.rating.to_f
-      end
-      @user_rating = @user_rating / @user.stories.count
-    end
   end
 
   def new
+    @user = User.new
   end
 
   def create
