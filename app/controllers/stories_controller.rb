@@ -5,8 +5,8 @@ class StoriesController < ApplicationController
 
   def index
     if params["cat"]!="all"
-      cat_id = Category.where(name: params["cat"].capitalize)
-      stories_list = Genre.where(category_id: cat_id[0].id)
+      cat = Category.find_by(name: params["cat"].titleize)
+      stories_list = Genre.where(category_id: cat.id)
       @stories = []
       stories_list.each do |story_id|
         @stories << Story.find(story_id.story_id)
@@ -64,6 +64,10 @@ class StoriesController < ApplicationController
 
   def update
     @story = Story.find_by(id: params[:id])
+    if params[:v].present?
+      @story.votes = @story.votes + 1
+      @story.rating = (@story.rating*(@story.votes-1) + params[:v].to_i)/@story.votes
+    else
     @story.name = params[:name]
     @story.description = params[:description]
     @story.address1 = params[:address1]
@@ -78,9 +82,10 @@ class StoriesController < ApplicationController
     @story.audio_url = params[:audio_url]
     @story.rating = params[:rating]
     @story.user_id = params[:user_id]
+  end
 
     if @story.save
-      redirect_to stories_url, notice: "Story updated successfully."
+      redirect_to story_url(@story.id), notice: "Story updated successfully."
     else
       render 'edit'
     end

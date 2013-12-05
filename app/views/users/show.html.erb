@@ -1,6 +1,5 @@
-<p>&nbsp;</p>
-<div class="panel panel-primary">
-  <div class="panel-heading">
+<div class="panel panel-primary round">
+  <div class="panel-heading top_round">
     <h1><%= @user.first_name %>&acute;s page</h1>
   </div>
   <div class="panel-body">
@@ -32,7 +31,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="btn-group btn-group-justified">
-                <a href="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                <a href="button" class="btn btn-sm btn-primary dropdown-toggle round" data-toggle="dropdown">
                   <b><%= @user.stories.count %></b><br><small>STORIES</small>
                 </a>
                 <ul class="dropdown-menu" role="menu">
@@ -46,7 +45,7 @@
             </div>
             <div class="col-md-4">
               <div class="btn-group btn-group-justified">
-                <a href="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                <a href="button" class="btn btn-sm btn-primary dropdown-toggle round" data-toggle="dropdown">
                   <b><%= @user.followers.count %></b><br><small>FOLLOWERS</small>
                 </a>
                 <ul class="dropdown-menu" role="menu">
@@ -63,7 +62,7 @@
             </div>
             <div class="col-md-4">
               <div class="btn-group btn-group-justified">
-                <a href="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                <a href="button" class="btn btn-sm btn-primary dropdown-toggle round" data-toggle="dropdown">
                   <b><%= @user.followings.count %></b><br><small>FOLLOWING</small>
                 </a>
                 <ul class="dropdown-menu" role="menu">
@@ -79,86 +78,22 @@
               </div>
             </div>
           </div>
-                    <p>
-            <h3>My Follow Storyfeed</h3>
+          <p>
+            <h3>Stories</h3>
           </p>
-          <div class="list-group">
-            <% @user.followings.each do |user| %>
-            <% user.stories.each do |story| %>
-              <a href="<%= story_url(story.id) %>" class='list-group-item'>
-                <p>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <b><%= story.name %></b>
-                    </div>
-                    <div class="col-md-2">
-                      <%= story.country %>
-                    </div>
-                    <div class="col-md-4">
-                      <% (1..story.rating).each do |i| %>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <% @empty_stars = 5 - i.to_i %>
-                      <% end %>
-                      <% (1..@empty_stars).each do |i| %>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                      <% end %>
-                    </div>
-                  </div>
-                </p>
-                <p>
-                  <%= story.description %>
-                </p>
-                <p>
-                  <%= image_tag story.picture_url, height: "150", width: "150", class: "img-thumbnail" %>
-                </p>
-              </a>
-                <% story.categories.each do |category| %>
-                <%= link_to category.name, stories_url(cat: category.name.downcase), type: "button", class: "btn btn-sm btn-primary" %>
-              <% end %>
-              <p>&nbsp;</p>
-            <% end %>
-            <% end %>
-          </div>
+          <% @user.stories.reverse.each do |story| %>
+            <%= story_tile(story,current_user) %>
+          <% end %>
         </div>
         <div class="col-md-6">
           <p>
-            <h3>My Storyfeed</h3>
+            <h3>Storyfeed</h3>
           </p>
-          <div class="list-group">
-            <% @user.stories.each do |story| %>
-              <a href="<%= story_url(story.id) %>" class='list-group-item'>
-                <p>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <b><%= story.name %></b>
-                    </div>
-                    <div class="col-md-2">
-                      <%= story.country %>
-                    </div>
-                    <div class="col-md-4">
-                      <% (1..story.rating).each do |i| %>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <% @empty_stars = 5 - i.to_i %>
-                      <% end %>
-                      <% (1..@empty_stars).each do |i| %>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                      <% end %>
-                    </div>
-                  </div>
-                </p>
-                <p>
-                  <%= story.description %>
-                </p>
-                <p>
-                  <%= image_tag story.picture_url, height: "150", width: "150", class: "img-thumbnail" %>
-                </p>
-              </a>
-                <% story.categories.each do |category| %>
-                <%= link_to category.name, stories_url(cat: category.name.downcase), type: "button", class: "btn btn-sm btn-primary" %>
-              <% end %>
-              <p>&nbsp;</p>
+          <% @user.followings.each do |user| %>
+            <% user.stories.each do |story| %>
+              <%= story_tile(story,current_user) %>
             <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>

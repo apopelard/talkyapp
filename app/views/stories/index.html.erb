@@ -1,57 +1,22 @@
-<div class="page-header">
-  <h1>Stories</h1>
-</div>
-
-<p><%= link_to 'Add a New Story', new_story_url, class: 'btn btn-primary' %></p>
-
-<ul class="nav nav-tabs">
-  <li <% if params["cat"]=="all" %>
+<div class="panel panel-primary round">
+  <div class="panel-heading top_round">
+    <h1>Stories</h1>
+  </div>
+  <div class="panel-body">
+  <ul class="nav nav-tabs">
+    <li <% if params["cat"]=="all" %>
     <%= "class='active'".html_safe %>
     <% end %>><%= link_to "All", stories_url(cat: "all") %></li>
-  <% Category.all.each do |category| %>
-  <li <% if params["cat"]==category.name.downcase %>
+    <% Category.all.each do |category| %>
+    <li <% if params["cat"]==category.name.downcase %>
     <%= "class='active'".html_safe %>
     <% end %>><%= link_to category.name, stories_url(cat: category.name.downcase) %></li>
-  <% end %>
-</ul>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Picture</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>City</th>
-      <th>Country</th>
-      <th>Audio url</th>
-      <th>Rating</th>
-      <th>User</th>
-      <th>Categories</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @stories.each do |story| %>
-      <tr>
-        <td><%= image_tag story.picture_url, width: "100" %></td>
-        <td><%= story.name %></td>
-        <td><%= story.description %></td>
-        <td><%= story.city %></td>
-        <td><%= story.country %></td>
-        <td><%= story.audio_url %></td>
-        <td><%= story.rating %></td>
-        <td><%= story.user.full_name %></td>
-        <td>
-          <% story.categories.each do |category| %>
-          <p><%= category.name %></p>
-          <% end %>
-        </td>
-        <td><%= link_to '<i class="fa fa-search-plus"></i>'.html_safe, story_url(story), class: 'btn btn-primary' %></td>
-        <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_story_url(story), class: 'btn btn-warning' %></td>
-        <td><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, story_url(story), method: 'delete', data: { confirm: "Do you really want to delete this story?" }, class: 'btn btn-danger' %></td>
-      </tr>
     <% end %>
-  </tbody>
-</table>
+  </ul>
+  <% @stories.each do |story| %>
+    <div class="col-md-6">
+      <%= story_tile(story,current_user) %>
+    </div>
+  <% end %>
+</div>
 

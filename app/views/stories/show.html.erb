@@ -50,6 +50,13 @@
             <% (1..@empty_stars).each do |i| %>
               <span class="glyphicon glyphicon-star-empty"></span>
             <% end %>
+            <span class="badge"><%= @story.votes %></span>
+          </dd>
+          <dt>Vote</dt>
+          <dd>
+            <% (1..5).each do |i| %>
+              <%= link_to "<span class='glyphicon glyphicon-star-empty'></span>".html_safe, story_url(@story.id,v: i), method: :patch %>
+            <% end %>
           </dd>
         </dl>
       </div>
