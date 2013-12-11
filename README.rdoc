@@ -1,28 +1,17 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TalkyApp
 
-Things you may want to cover:
+This App is Twitter for audio.
+Please download all files to have picture and audio populated when launching the app.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Login information:
+there are 5 users registered to this app:
+[user]  [login]                                   [password]         
+1       r-betina@kellogg.northwestern.edu         12345678
+2       apopelard2014@kellogg.northwestern.edu    12345678
+3       mmaute2014@kellogg.northwestern.edu       12345678
+4       whatch2014@kellogg.northwestern.edu       12345678
+5       email@stephenfry.com                      12345678
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
