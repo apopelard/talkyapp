@@ -7,11 +7,11 @@ Please download all files to have picture and audio populated when launching the
 
 Login information:
 there are 5 users registered to this app:
-[user]  [login]                                   [password]         
-1       r-betina@kellogg.northwestern.edu         12345678
-2       apopelard2014@kellogg.northwestern.edu    12345678
-3       mmaute2014@kellogg.northwestern.edu       12345678
-4       whatch2014@kellogg.northwestern.edu       12345678
-5       email@stephenfry.com                      12345678
+user	login						password         
+1	r-betina@kellogg.northwestern.ed		12345678
+2	apopelard2014@kellogg.northwestern.ed		12345678
+3	mmaute2014@kellogg.northwestern.ed		12345678
+4	whatch2014@kellogg.northwestern.ed		12345678
+5	email@stephenfry.co				12345678
 
 
