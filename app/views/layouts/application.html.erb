@@ -14,19 +14,18 @@
     }
   </style>
 
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
-
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <style>
       #map-canvas {
         margin: 0;
         padding: 0;
@@ -83,6 +82,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
         <li><%= link_to "See All Stories", stories_url(cat: "all") %></li>
         <% if user_signed_in? %>
         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+        <li><%= link_to('Update Profile', edit_user_url(current_user))  %></li>
         <% else %>
         <li><%= link_to('Login', new_user_session_path)  %></li>
         <% end %>

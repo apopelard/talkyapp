@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    @users = User.order("first_name").page(params[:page]).per(10)
   end
 
   def show
@@ -41,10 +41,9 @@ class UsersController < ApplicationController
     @user.location = params[:location]
     @user.picture_url = params[:picture_url]
     @user.email = params[:email]
-    @user.last_visit = params[:last_visit]
 
     if @user.save
-      redirect_to users_url, notice: "User updated successfully."
+      redirect_to user_url(params[:id]), notice: "User updated successfully."
     else
       render 'edit'
     end

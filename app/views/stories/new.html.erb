@@ -1,6 +1,10 @@
-<div class="page-header">
-  <h1>New Story</h1>
-</div>
+<div class="panel panel-primary round">
+  <div class="panel-heading top_round">
+    <h2>New Story</h2>
+  </div>
+  <div class="panel-body">
+    <div class="container">
+      <div class="row">
 
 <%= form_tag(stories_url, method: 'post', class: 'form-horizontal') do %>
   <div class="form-group">
@@ -74,6 +78,19 @@
   </div>
 
   <div class="form-group">
+    <div class="col-md-2 control-label">
+      <strong>Categories</strong>
+    </div>
+    <div class="col-md-8">
+      <% Category.all.each do |category| %>
+        <%= check_box_tag(category.id,"yes") %>
+        <%= label_tag(category.id, category.name.capitalize) %>
+        &nbsp;
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <div class="col-md-6">
       <%= hidden_field_tag :user_id, current_user.id, class: 'form-control' %>
     </div>
@@ -81,7 +98,10 @@
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-6">
-      <%= submit_tag "Create Story", class: 'btn btn-primary' %>
+      <%= submit_tag "Create Story", class: 'btn btn-primary round' %>
     </div>
   </div>
 <% end %>
+    </div>
+  </div>
+</div>

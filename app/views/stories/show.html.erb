@@ -1,73 +1,75 @@
-<p>&nbsp;</p>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h1><%= @story.name %></h1>
-      </div>
-    <div class="panel-body">
-       <div class="container">
-     <div class="row">
-      <div class="col-md-6">
-        <%= image_tag @story.picture_url, width: 300, class: "img-thumbnail" %>
-        <dl class="dl-horizontal align-left">
-          <dt>Listen</dt>
-          <dd>
-            <%= link_to @story.audio_url do %>
-            <span class="glyphicon glyphicon-play"></span>
-            <% end %>
-          </dd>
-          <dt>Description</dt>
-          <dd><%= @story.description %></dd>
-          <dt>Author</dt>
-          <dd>
-            <%= image_tag @story.user.picture_url, width: 40, class: "img-circle" %>
-            <%= link_to @story.user.full_name, user_url(@story.user.id) %>
-            <span class="badge"><%= @story.user.stories.count %> stories</span>
-          </dd>
-          <dt>Address</dt>
-          <dd>
-            <address>
+<div class="panel panel-primary round">
+  <div class="panel-heading top_round">
+    <h2><%= @story.name %></h2>
+  </div>
+  <div class="panel-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-5 story-list-title">
+              <%= image_tag @story.picture_url, width: 250, class: "img-thumbnail" %>
+            </div>
+            <div class="col-md-7 story-audio">
+              <p><h4>Listen to the story</h4></p>
+              <p><h2>
+                <%= link_to @story.audio_url do %>
+                  <span class="glyphicon glyphicon-play"></span>
+                <% end %></h2>
+              </p>
+              <p></p>
+              <p>Rate this story</p>
+              <p>
+                <% (1..5).each do |i| %>
+                  <%= link_to " <span class='glyphicon glyphicon-star-empty'></span>".html_safe, story_url(@story.id,v: i), method: :patch %>
+                <% end %>
+              </p>
+            </div>
+          </div>
+          <div class="row story-list-title"></div>
+          <div class="row">
+            <div class="col-md-4 story-list-title">Rating</div>
+            <div class="col-md-8 story-list-content">
+              <%= rating_stars(@story.rating) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 story-list-title">Description</div>
+            <div class="col-md-8 story-list-content"><%= @story.description %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 story-list-title">Author</div>
+            <div class="col-md-8 story-list-content">
+              <%= link_to @story.user.full_name, user_url(@story.user.id) %>
+              <span class="badge"><%= @story.user.stories.count %> stories</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 story-list-title">Address</div>
+            <div class="col-md-8 story-list-content">
               <%= @story.address1 %><br>
               <% unless @story.address2.empty? %>
-              <%= @story.address2 %>
-              <% end %><br>
+              <%= @story.address2 %><br>
+              <% end %>
               <%= @story.city %>,
               <%= @story.state %> <%= @story.postcode %><br>
               <%= @story.country %><br>
-            </address>
-          </dd>
-          <dt>Categories</dt>
-          <dd>
-            <% @story.categories.each do |category| %>
-              <%= link_to category.name, stories_url(cat: category.name.downcase), type: "button", class: "btn btn-sm btn-primary" %>
-            <% end %>
-          </dd>
-          <dt>Rating</dt>
-          <dd>
-            <% (1..@story.rating).each do |i| %>
-              <span class="glyphicon glyphicon-star"></span>
-              <% @empty_stars = 5 - i.to_i %>
-            <% end %>
-            <% (1..@empty_stars).each do |i| %>
-              <span class="glyphicon glyphicon-star-empty"></span>
-            <% end %>
-            <span class="badge"><%= @story.votes %></span>
-          </dd>
-          <dt>Vote</dt>
-          <dd>
-            <% (1..5).each do |i| %>
-              <%= link_to "<span class='glyphicon glyphicon-star-empty'></span>".html_safe, story_url(@story.id,v: i), method: :patch %>
-            <% end %>
-          </dd>
-        </dl>
-      </div>
-      <div class="col-md-6">
-        <h4>Check the story location</h4>
-        <div style="width:450px;height:450px" id="map-canvas"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 story-list-title">Categories</div>
+            <div class="col-md-8 story-list-content">
+              <% @story.categories.each do |category| %>
+                <%= link_to category.name, stories_url(cat: category.name.downcase), type: "button", class: "btn btn-xs btn-primary round" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>Check the story location</h4>
+          <div style="width:450px;height:450px" id="map-canvas"></div>
+        </div>
       </div>
     </div>
-    <div class="row">
-
-    </div>
   </div>
-    </div>
-  </div>
+</div>

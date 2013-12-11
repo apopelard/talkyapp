@@ -1,6 +1,10 @@
-<div class="page-header">
-  <h1>Editing Story #<%= @story.id %></h1>
-</div>
+<div class="panel panel-primary round">
+  <div class="panel-heading top_round">
+    <h2>Edit - <%= @story.name %></h2>
+  </div>
+  <div class="panel-body">
+    <div class="container">
+      <div class="row">
 
 <%= form_tag(story_url(@story), method: 'patch', class: 'form-horizontal') do %>
   <div class="form-group">
@@ -60,20 +64,6 @@
   </div>
 
   <div class="form-group">
-    <%= label_tag :latitude, nil, class: 'col-md-2 control-label' %>
-    <div class="col-md-6">
-      <%= text_field_tag :latitude, @story.latitude, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= label_tag :longitute, nil, class: 'col-md-2 control-label' %>
-    <div class="col-md-6">
-      <%= text_field_tag :longitute, @story.longitute, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
     <%= label_tag :picture_url, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
       <%= text_field_tag :picture_url, @story.picture_url, class: 'form-control' %>
@@ -88,22 +78,35 @@
   </div>
 
   <div class="form-group">
-    <%= label_tag :rating, nil, class: 'col-md-2 control-label' %>
-    <div class="col-md-6">
-      <%= text_field_tag :rating, @story.rating, class: 'form-control' %>
+    <div class="col-md-2 control-label">
+      <strong>Categories</strong>
+    </div>
+    <div class="col-md-8">
+      <% Category.all.each do |category| %>
+        <% if @story.categories.include?category %>
+          <%= check_box_tag(category.id,"yes",true) %>
+          <%= label_tag(category.id, category.name.capitalize) %>
+          &nbsp;
+        <% else %>
+          <%= check_box_tag(category.id,"yes") %>
+          <%= label_tag(category.id, category.name.capitalize) %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= label_tag :user_id, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
-      <%= number_field_tag :user_id, @story.user_id, class: 'form-control' %>
+      <%= hidden_field_tag :user_id, @story.user_id, class: 'form-control' %>
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-6">
-      <%= submit_tag "Update Story", class: 'btn btn-primary' %>
+      <%= submit_tag "Update Story", class: 'btn btn-primary round' %>
     </div>
   </div>
 <% end %>
+    </div>
+  </div>
+</div>

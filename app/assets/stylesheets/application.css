@@ -12,7 +12,7 @@
  *= require_tree .
  */
 body{
-  background-color: lightgrey;
+  background-color: #E4E9E2;
 }
 
 .story_box{
@@ -23,8 +23,20 @@ body{
   margin:5px;
 }
 
+.follow-box{
+  padding:5px;
+  border:1px solid;
+  border-color:lightgray;
+  border-radius:10px;
+  margin:5px;
+}
+
 .round{
   border-radius:10px;
+}
+
+.full_width{
+  width:100%;
 }
 
 .bottom_round{
@@ -63,5 +75,70 @@ a{
   padding:5px;
   border:none;
   margin:0px;
-  background-color: lightgrey;
+  background-color: #E4E9E2;
+}
+
+.btn-primary{
+  background-color: #94B2B4;
+}
+
+.btn-primary:hover{
+  background-color: #57495A;
+}
+
+.panel-heading{
+  background-color: #FFFFFF !important;
+  border-bottom-color: #E4E9E2 !important;
+  color:black !important;
+}
+
+.panel{
+  border-color: #152340;
+}
+
+.p-zero{
+  padding:0px;
+  margin:0px;
+}
+
+.story-list-title{
+  padding-left: 0px;
+  padding-top:8px;
+  padding-bottom:8px;
+  margin:0px;
+  font-weight: bold;
+}
+
+.story-list-content{
+  padding-left: 0px;
+  padding-top:8px;
+  padding-bottom:8px;
+  margin:0px;
+}
+
+.story-audio{
+  padding-left: 0px;
+  padding-top:8px;
+  padding-bottom:8px;
+  margin:0px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.page{
+  text-align: center;
+}
+
+.story-feed-lg{
+  height:700px;
+  padding: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.story-feed-sm{
+  height:460px;
+  padding: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

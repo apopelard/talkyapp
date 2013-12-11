@@ -1,6 +1,6 @@
 <div class="panel panel-primary round">
-  <div class="panel-heading top_round">
-    <h1><%= @user.first_name %>&acute;s page</h1>
+  <div class="panel-heading top_round new-panel">
+    <h2><%= @user.first_name %>&acute;s page</h2>
   </div>
   <div class="panel-body">
     <div >
@@ -20,7 +20,7 @@
                 <div class="col-md-8">
                   <p><%= @user.full_name %></p>
                   <p><%= @user.location %></p>
-                  <p><%= rating %></p>
+                  <p><%= rating_stars(rating(@user)) %></p>
                 </div>
               </div>
             </div>
@@ -30,70 +30,55 @@
 
           <div class="row">
             <div class="col-md-4">
-              <div class="btn-group btn-group-justified">
-                <a href="button" class="btn btn-sm btn-primary dropdown-toggle round" data-toggle="dropdown">
-                  <b><%= @user.stories.count %></b><br><small>STORIES</small>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                <% @user.stories.each do |story| %>
-                  <li>
-                    <%= link_to story.name, story_url(story.id) %>
-                  </li>
-                <% end %>
-                </ul>
-              </div>
+              <%= link_to "<b>#{@user.stories.count}</b><br><small>STORIES</small>".html_safe, user_url(disp: "stories"), class: "btn btn-sm btn-primary round full_width" %>
             </div>
             <div class="col-md-4">
-              <div class="btn-group btn-group-justified">
-                <a href="button" class="btn btn-sm btn-primary dropdown-toggle round" data-toggle="dropdown">
-                  <b><%= @user.followers.count %></b><br><small>FOLLOWERS</small>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                <% @user.followers.each do |follower| %>
-                  <li>
-                    <%= link_to user_url(follower.id) do %>
-                    <%= image_tag follower.picture_url, class: "img-circle", width: "40", alt: "#{follower.full_name}"%>
-                    <%= follower.first_name %>
-                    <% end %>
-                  </li>
-                <% end %>
-                </ul>
-              </div>
+              <%= link_to "<b>#{@user.followers.count}</b><br><small>FOLLOWERS</small>".html_safe, user_url(disp: "followers"), class: "btn btn-sm btn-primary round full_width" %>
             </div>
             <div class="col-md-4">
-              <div class="btn-group btn-group-justified">
-                <a href="button" class="btn btn-sm btn-primary dropdown-toggle round" data-toggle="dropdown">
-                  <b><%= @user.followings.count %></b><br><small>FOLLOWING</small>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                <% @user.followings.each do |following| %>
-                  <li>
-                   <%= link_to user_url(following.id) do %>
-                    <%= image_tag following.picture_url, class: "img-circle", width: "40", alt: "#{following.full_name}"%>
-                    <%= following.first_name %>
-                    <% end %>
-                  </li>
-                <% end %>
-                </ul>
-              </div>
+              <%= link_to "<b>#{@user.followings.count}</b><br><small>FOLLOWING</small>".html_safe, user_url(disp: "following"), class: "btn btn-sm btn-primary round full_width" %>
             </div>
           </div>
-          <p>
-            <h3>Stories</h3>
-          </p>
-          <% @user.stories.reverse.each do |story| %>
-            <%= story_tile(story,current_user) %>
+          <% if params["disp"] == "followers" %>
+            <p>
+              <h3>Followers</h3>
+            </p>
+            <div class="story-feed-sm">
+            <% @user.followers.each do |follower| %>
+              <%= user_profile(follower,@user) %>
+            <% end %>
+          </div>
+          <% elsif params["disp"] == "following" %>
+            <p>
+              <h3>Following</h3>
+            </p>
+            <div class="story-feed-sm">
+            <% @user.followings.each do |following| %>
+              <%= user_profile(following,@user) %>
+            <% end %>
+          </div>
+          <% else %>
+            <p>
+              <h3>Stories</h3>
+            </p>
+            <div class="story-feed-sm">
+            <% @user.stories.reverse.each do |story| %>
+              <%= story_tile(story,@user) %>
+            <% end %>
+          </div>
           <% end %>
         </div>
         <div class="col-md-6">
           <p>
             <h3>Storyfeed</h3>
           </p>
+          <div class="story-feed-lg">
           <% @user.followings.each do |user| %>
             <% user.stories.each do |story| %>
-              <%= story_tile(story,current_user) %>
+              <%= story_tile(story,@user) %>
             <% end %>
           <% end %>
+        </div>
         </div>
       </div>
     </div>
