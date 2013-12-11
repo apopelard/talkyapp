@@ -8,7 +8,10 @@ class Story < ActiveRecord::Base
   validates :name, presence: true
   validates :address1, presence: true
   validates :city, presence: true
-  validates :audio_url, presence: true
+  validates :audio, presence: true
   validates :user_id, presence: true
+
+  mount_uploader :image, ImageUploader
+  mount_uploader :audio, AudioUploader
 
 end

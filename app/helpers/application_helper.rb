@@ -63,7 +63,7 @@ module ApplicationHelper
               <div class='story_content'>
                 <div class='col-md-8'>
                   <p>#{story.description}</p>
-                  <p>#{image_tag story.picture_url, size: '100', class: 'img-rounded'}</p>
+                  <p>#{image_tag story.image, size: '100', class: 'img-rounded'}</p>
                 </div>
                 <div class='col-md-4'>
                   <p>#{story_user}</p>
@@ -80,7 +80,7 @@ module ApplicationHelper
   def user_profile(user, base_user)
     return "<div class='row follow-box profile-link'><a href='#{user_url(user)}'>
               <div class='col-md-2'>
-                #{image_tag user.picture_url, class: 'img-circle', width: '40', alt: user.full_name}
+                #{image_tag user.image, class: 'img-circle', width: '40', alt: user.full_name}
               </div>
               <div class='col-md-8'>
                 <p class='p-zero'><strong>#{user.full_name}</strong> | @#{user.username}</p>

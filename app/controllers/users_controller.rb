@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @user.first_name = params[:first_name]
     @user.last_name = params[:last_name]
     @user.location = params[:location]
-    @user.picture_url = params[:picture_url]
+    @user.image = params[:image]
     @user.email = params[:email]
     @user.last_visit = params[:last_visit]
 
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @user.first_name = params[:first_name]
     @user.last_name = params[:last_name]
     @user.location = params[:location]
-    @user.picture_url = params[:picture_url]
+    @user.image = params[:image]
     @user.email = params[:email]
 
     if @user.save

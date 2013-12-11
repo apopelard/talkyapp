@@ -59,8 +59,8 @@ class StoriesController < ApplicationController
     @story.latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
     @story.longitute = parsed_data["results"][0]["geometry"]["location"]["lng"]
 
-    @story.picture_url = params[:picture_url]
-    @story.audio_url = params[:audio_url]
+    @story.image = params[:image]
+    @story.audio = params[:audio]
     @story.rating = 0
     @story.votes = 0
     @story.user_id = params[:user_id]
@@ -92,7 +92,7 @@ class StoriesController < ApplicationController
       @story.name = @story.name
       @story.address1 = @story.address1
       @story.city = @story.city
-      @story.audio_url = @story.audio_url
+      @story.audio = @story.audio
       @story.user_id = @story.user_id
     else
       @story.name = params[:name]
@@ -110,8 +110,8 @@ class StoriesController < ApplicationController
       parsed_data = JSON.parse(raw_data)
       @story.latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
       @story.longitute = parsed_data["results"][0]["geometry"]["location"]["lng"]
-      @story.picture_url = params[:picture_url]
-      @story.audio_url = params[:audio_url]
+      @story.image = params[:image]
+      @story.audio = params[:audio]
       @story.user_id = params[:user_id]
     end
 

@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row">
 
-<%= form_tag(story_url(@story), method: 'patch', class: 'form-horizontal') do %>
+<%= form_tag(story_url(@story), method: 'patch', class: 'form-horizontal', multipart: true) do %>
   <div class="form-group">
     <%= label_tag :name, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
@@ -64,16 +64,16 @@
   </div>
 
   <div class="form-group">
-    <%= label_tag :picture_url, nil, class: 'col-md-2 control-label' %>
+    <%= label_tag :image, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
-      <%= text_field_tag :picture_url, @story.picture_url, class: 'form-control' %>
+      <%= file_field_tag :image %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= label_tag :audio_url, nil, class: 'col-md-2 control-label' %>
+    <%= label_tag :audio, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
-      <%= text_field_tag :audio_url, @story.audio_url, class: 'form-control' %>
+      <%= file_field_tag :audio %>
     </div>
   </div>
 

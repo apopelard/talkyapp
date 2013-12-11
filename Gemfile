@@ -8,6 +8,9 @@ gem 'devise'
 # Pagination
 gem 'kaminari'
 
+# File upload gem
+gem 'carrierwave'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 

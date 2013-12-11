@@ -22,7 +22,7 @@ users.each do |user|
   u.first_name = user["first_name"]
   u.last_name = user["last_name"]
   u.location = "USA"
-  u.picture_url = user["image_url"]
+  u.image = user["image_url"]
   u.email = u.username+"2014@kellogg.northwestern.edu"
   u.save
 end

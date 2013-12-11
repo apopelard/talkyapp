@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205053847) do
+ActiveRecord::Schema.define(version: 20131211043505) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20131205053847) do
     t.string   "country"
     t.float    "latitude"
     t.float    "longitute"
-    t.string   "picture_url"
-    t.string   "audio_url"
+    t.string   "image"
+    t.string   "audio"
     t.float    "rating"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20131205053847) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "location"
-    t.string   "picture_url"
+    t.string   "image"
     t.string   "email"
     t.datetime "last_visit"
     t.datetime "created_at"

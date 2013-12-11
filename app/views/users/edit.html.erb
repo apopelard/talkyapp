@@ -7,7 +7,7 @@
       <div class="row">
 
 
-<%= form_tag(user_url(@user), method: 'patch', class: 'form-horizontal') do %>
+<%= form_tag(user_url(@user), method: 'patch', class: 'form-horizontal', multipart: true) do %>
   <div class="form-group">
     <%= label_tag :username, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
@@ -37,9 +37,9 @@
   </div>
 
   <div class="form-group">
-    <%= label_tag :picture_url, nil, class: 'col-md-2 control-label' %>
+    <%= label_tag :image, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
-      <%= text_field_tag :picture_url, @user.picture_url, class: 'form-control' %>
+      <%= file_field_tag :image %>
     </div>
   </div>
 
@@ -57,5 +57,7 @@
   </div>
 <% end %>
 </div>
+<%= link_to "Delete Profile", user_url(@user.id), method: :delete, type: "button", class: "btn btn-md btn-danger round"  %>
+
   </div>
 </div>
