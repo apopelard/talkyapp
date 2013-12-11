@@ -12,10 +12,10 @@
             </div>
             <div class="col-md-7 story-audio">
               <p><h4>Listen to the story</h4></p>
-              <p><h2>
-                <%= link_to @story.audio_url do %>
-                  <span class="glyphicon glyphicon-play"></span>
-                <% end %></h2>
+              <p>
+                <audio controls="controls">
+                  <source src="<%= @story.audio_url %>" />
+                </audio>
               </p>
               <p></p>
               <p>Rate this story</p>
