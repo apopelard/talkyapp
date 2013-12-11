@@ -64,6 +64,13 @@
               <% end %>
             </div>
           </div>
+          <% if @story.user.id == current_user.id %>
+            <div class="row story-list-content">
+              <div class="col-md-6 story-list-content">
+                <%= link_to "Edit this story", edit_story_url(@story.id), type: "button", class: "btn btn-xs btn-warning round" %>
+              </div>
+            </div>
+          <% end %>
         </div>
         <div class="col-md-6">
           <h4>Check the story location</h4>

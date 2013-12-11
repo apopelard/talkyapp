@@ -1,11 +1,24 @@
 class UsersController < ApplicationController
 
+  before_action :set_user, :only => [:show, :edit, :udpate, :destroy]
+  before_action :user_must_be_owner_of_user, :only => [:edit, :udpate, :destroy]
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_must_be_owner_of_user
+    unless @user.id == current_user.id
+      redirect_to root_url, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     @users = User.order("first_name").page(params[:page]).per(10)
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+
   end
 
   def new

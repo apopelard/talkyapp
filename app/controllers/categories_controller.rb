@@ -1,5 +1,11 @@
 class CategoriesController < ApplicationController
 
+  before_action :go_to_home
+
+  def go_to_home
+    redirect_to root_url, :alert => "This page does not exist."
+  end
+
   def index
     @categories = Category.all
   end

@@ -1,5 +1,11 @@
 class FollowersController < ApplicationController
 
+  before_action :go_to_home,:only => [:index, :show, :new, :edit, :udpate]
+
+  def go_to_home
+    redirect_to root_url, :alert => "This page does not exist."
+  end
+
   def index
     @followers = Follower.all
   end

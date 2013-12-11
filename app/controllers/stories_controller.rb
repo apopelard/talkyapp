@@ -3,6 +3,19 @@ require 'json'
 
 class StoriesController < ApplicationController
 
+  before_action :set_story, :only => [:show, :edit, :udpate, :destroy]
+  before_action :user_must_be_owner_of_story, :only => [:edit, :udpate, :destroy]
+
+  def set_story
+    @story = Story.find(params[:id])
+  end
+
+  def user_must_be_owner_of_story
+    unless @story.user.id == current_user.id
+      redirect_to root_url, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     if params["cat"]!="all"
       cat = Category.find_by(name: params["cat"].titleize)
